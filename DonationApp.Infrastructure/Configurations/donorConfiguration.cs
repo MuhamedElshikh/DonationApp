@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DonationApp.Infrastructure.Configurations
 {
-    public class donorConfiguration : IEntityTypeConfiguration<Donor>
+    public class DonorConfiguration : IEntityTypeConfiguration<Donor>
     {
         public void Configure(EntityTypeBuilder<Donor> builder)
         {

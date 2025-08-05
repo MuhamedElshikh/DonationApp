@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DonationApp.Domain.Entities
-{
-    public class Donation
     {
+    public class Donation
+        {
         public Guid Id { get; set; }
         public DateTime Date { get; set; }
         public decimal Amount { get; set; }
@@ -16,5 +16,5 @@ namespace DonationApp.Domain.Entities
 
         public string ReceiptNumber { get; set; }
 
+        }
     }
-}
