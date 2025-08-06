@@ -47,9 +47,12 @@ namespace DonationApp
             base.OnStartup(e);
 
 
-            var mainWindow = new main();
-            mainWindow.Show();
+            //var mainWindow = new main();
+            //mainWindow.Show();
             }
+
+
+        #region RunDailyRefresh
 
         // Refresh subscription statuses Daily on app Launch
         // This is a one-time check to ensure that the subscription statuses are up-to-date
@@ -66,6 +69,10 @@ namespace DonationApp
                 Settings.Default.Save();
                 }
             }
+
+        #endregion
+
+        #region RunDailySubscription Check
 
         // Hourly check to see if the daily subscription refresh has been run
         // If not, run it
@@ -84,6 +91,7 @@ namespace DonationApp
             _dailyTimer.Start();
             }
 
+        #endregion
 
         }
 
