@@ -3,6 +3,7 @@ using DonationApp.Applications.Services;
 using DonationApp.Infrastructure;
 using DonationApp.Infrastructure.Data;
 using DonationApp.UI;
+using DonationApp.UI.Views;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -46,7 +47,7 @@ namespace DonationApp
             base.OnStartup(e);
 
 
-            var mainWindow = new MainWindow();
+            var mainWindow = new main();
             mainWindow.Show();
             }
 

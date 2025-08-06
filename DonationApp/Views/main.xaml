@@ -1,0 +1,90 @@
+﻿<Window x:Class="DonationApp.UI.Views.main"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DonationApp.UI.Views"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
+        Title="DonationApp" Height="400" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Window.Resources>
+        <Style x:Key="ModernSquareButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#4A90E2"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                        CornerRadius="12"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        SnapsToDevicePixels="True">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" BlurRadius="5" ShadowDepth="2" Opacity="0.2"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#3C7FD9"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#3366CC"/>
+                                <Setter TargetName="border" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="Black" BlurRadius="2" ShadowDepth="1" Opacity="0.1"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Border Background="White" CornerRadius="10" Padding="20" Margin="0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black" Opacity="0.2"/>
+            </Border.Effect>
+
+            <Grid>
+                <!-- Exit Button at Top Right -->
+                <Button Content="✕"
+                    Width="30" Height="30"
+                    HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    FontSize="14"
+                    Cursor="Hand"
+                    Click="Close_Click" />
+                <!-- Main Content -->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Welcome to Donation App" FontSize="20" FontWeight="Bold" 
+                               HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                    <UniformGrid Rows="2" Columns="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Content="Donor" Style="{StaticResource ModernSquareButtonStyle}" Click="Donors_Click" />
+                        <Button Content="Donations" Style="{StaticResource ModernSquareButtonStyle}" Click="Donations_Click" />
+                        <Button Content="Admin" Style="{StaticResource ModernSquareButtonStyle}" />
+                        <Button Content="Test" Style="{StaticResource ModernSquareButtonStyle}" />
+                    </UniformGrid>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
