@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DonationApp.Domain.Entities
+{
+    public class Subscriber
     {
-    public class Subscription
-        {
         public Guid Id { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public decimal Amount { get; set; }
-        public string SubscriptionType { get; set; }
+        public DateTime SubscriptionDate { get; set; }
         public bool IsActive { get; set; }
-        public List<Subscriber> subscribers { get; set; }
+       
         public string ReceiptNumber { get; set; }
-        }
+        // Navigation property to link to the Subscription entity
+        public Subscription Subscription { get; set; }
     }
+}

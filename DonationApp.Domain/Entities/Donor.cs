@@ -11,7 +11,6 @@ namespace DonationApp.Domain.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public int phoneNumber { get; set; }
-        public Subscription Subscription { get; set; }
         public List<Donation> Donations { get; set; }
         }
     }
