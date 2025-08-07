@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DonationApp.Domain.Entities
+namespace DonationApp.Shared.Dtos
+{
+    public class DonorDto
     {
-    public class Donor : BaseEntity<Guid>
-    {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public int phoneNumber { get; set; }
-        public List<Donation> Donations { get; set; }
-        }
+        public List<ReturnDonationDto> Donations { get; set; }
+
     }
+}

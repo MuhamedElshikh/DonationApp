@@ -26,11 +26,7 @@ namespace DonationApp.Infrastructure.Configurations
                 .IsRequired()
                 .HasComputedColumnSql("DATEADD(YEAR, 1, StartDate)", stored: true); ;
 
-            builder.Property(S => S.IsActive)
-                .HasColumnType("BIT")
-                .IsRequired()
-                .HasDefaultValue(true);
-            builder.HasIndex(e => e.IsActive);
+           
 
             }
         }

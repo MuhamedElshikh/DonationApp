@@ -25,7 +25,7 @@ namespace DonationApp.Infrastructure.Configurations
             builder.HasOne(d => d.Donor)
                 .WithMany(d => d.Donations)
                 .HasForeignKey(d => d.DonorId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.Property(d => d.ReceiptNumber)
                 .IsRequired();
