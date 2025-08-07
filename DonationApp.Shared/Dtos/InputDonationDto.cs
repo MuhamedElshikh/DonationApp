@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DonationApp.Domain.Entities
+namespace DonationApp.Shared.Dtos
+{
+    public class InputDonationDto
     {
-    public class Expense : BaseEntity<Guid>
-    {
+        public Guid DonorId { get; set; }
+        public string donorName { get; set; }
         public DateTime Date { get; set; }
         public decimal Amount { get; set; }
-        public string ExpenseType { get; set; }
-        public string Description { get; set; }
+
+        public string ReceiptNumber { get; set; }
 
 
-        }
     }
+}

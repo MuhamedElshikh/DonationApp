@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DonationApp.Domain\DonationApp.Domain.csproj" />
+    <ProjectReference Include="..\DonationApp.Shared\DonationApp.Shared.csproj" />
   </ItemGroup>
 
 </Project>

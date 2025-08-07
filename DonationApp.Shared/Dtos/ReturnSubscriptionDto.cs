@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DonationApp.Domain.Entities.Enums;
 
-namespace DonationApp.Domain.Entities
-    {
-    public class Subscription : BaseEntity<Guid>
+namespace DonationApp.Shared.Dtos
+{
+    public class ReturnSubscriptionDto
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public decimal Amount { get; set; }
-        public SubscriptionType SubscriptionType { get; set; }
-        public List<Subscriber> subscribers { get; set; }
+        public string SubscriptionType { get; set; }
+        
         public string ReceiptNumber { get; set; }
-        }
     }
+}

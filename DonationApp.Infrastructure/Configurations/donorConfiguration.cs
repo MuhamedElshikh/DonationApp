@@ -15,11 +15,9 @@ namespace DonationApp.Infrastructure.Configurations
         {
            builder.HasMany<Donation>(D=>D.Donations).WithOne(D => D.Donor)
                 .HasForeignKey(D => D.DonorId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne<Subscription>(D => D.Subscription).WithMany(S => S.Donor)
-                .HasForeignKey(D=>D.Id)
-                .OnDelete(DeleteBehavior.Cascade);
+           
             builder.Property(d => d.Name).IsRequired().HasMaxLength(100);
             builder.Property(d => d.phoneNumber).IsRequired();
         }
