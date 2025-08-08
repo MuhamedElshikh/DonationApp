@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DonationApp.Applications.Interfaces
-{
-    public interface ISubscriptionService
     {
-        Task<List<string>> GetAllSubscribersAsync();
-        
+    public interface ISubscriptionService
+        {
+        Task<List<string>> GetAllSubscriptionsAsync();
+
+        }
     }
-}

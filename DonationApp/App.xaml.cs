@@ -32,7 +32,7 @@ namespace DonationApp
 
             services.AddSingleton<IConfiguration>(configuration);
             services.AddInfrastructure(configuration);
-            services.AddScoped<IServiceManger, ServiceManger>();
+            services.AddScoped<IServiceManager, ServiceManager>();
 
 
             _serviceProvider = services.BuildServiceProvider();
