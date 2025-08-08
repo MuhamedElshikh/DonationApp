@@ -10,18 +10,21 @@ using System.Threading.Tasks;
 
 namespace DonationApp.Applications.Services
     {
-    public class DonationService(IUnitOfWork _unitOfWork) : IDonationServise
+    public class DonationService(IUnitOfWork _unitOfWork) : IDonationService
         {
-        public async Task<bool> CreateDonationAsync(InputDonationDto donation)
+
+        #region Add
+
+        public async Task<bool> CreateDonationAsync(InputDonationDto donationEntity)
             {
 
-            var donationEntity = new InputDonationDto
-                {
-                DonorId = donation.DonorId,
-                Amount = donation.Amount,
-                Date = donation.Date,
-                ReceiptNumber = donation.ReceiptNumber
-                };
+            //var donationEntity = new InputDonationDto
+            //    {
+            //    DonorId = donation.DonorId,
+            //    Amount = donation.Amount,
+            //    Date = donation.Date,
+            //    ReceiptNumber = donation.ReceiptNumber
+            //    };
 
             if ( string.IsNullOrEmpty(donationEntity.ReceiptNumber) )
                 {
@@ -72,18 +75,10 @@ namespace DonationApp.Applications.Services
             return false;
             }
 
-        public async Task<bool> DeleteDonationAsync(Guid id)
-            {
 
-            var donation = await _unitOfWork.GetRepository<Donation, Guid>().GetByIdAsync(id);
-            if ( donation == null )
-                {
-                return false;
-                }
-            _unitOfWork.GetRepository<Donation, Guid>().Delete(donation);
-            return await _unitOfWork.SaveChangesAsync().ContinueWith(t => t.Result > 0);
-            }
+        #endregion
 
+        #region Get All
         public async Task<IEnumerable<ReturnDonationDto>> GetAllDonationsAsync()
             {
             var donor = await _unitOfWork.GetRepository<Donor, Guid>().GetAllAsync(null, false);
@@ -102,6 +97,11 @@ namespace DonationApp.Applications.Services
 
             }
 
+
+        #endregion
+
+        #region Get By Id
+
         public async Task<ReturnDonationDto> GetDonationByIdAsync(Guid id)
             {
 
@@ -118,6 +118,11 @@ namespace DonationApp.Applications.Services
 
 
             }
+
+
+        #endregion
+
+        #region Update
 
         public async Task<bool> UpdateDonationAsync(InputDonationDto donation)
             {
@@ -136,5 +141,27 @@ namespace DonationApp.Applications.Services
             var result = await _unitOfWork.SaveChangesAsync();
             return result > 0;
             }
+
+
+
+        #endregion
+
+        #region Delete
+
+        public async Task<bool> DeleteDonationAsync(Guid id)
+            {
+
+            var donation = await _unitOfWork.GetRepository<Donation, Guid>().GetByIdAsync(id);
+            if ( donation == null )
+                {
+                return false;
+                }
+            _unitOfWork.GetRepository<Donation, Guid>().Delete(donation);
+            return await _unitOfWork.SaveChangesAsync().ContinueWith(t => t.Result > 0);
+            }
+
+
+        #endregion
+
         }
     }

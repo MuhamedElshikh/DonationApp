@@ -9,6 +9,7 @@ namespace DonationApp.Domain.Entities
     {
     public class Subscription : BaseEntity<Guid>
         {
+
         public DateOnly StartDate { get; set; }
         public DateOnly EndDate { get; set; }
         public decimal Amount { get; set; }

@@ -11,44 +11,43 @@ namespace DonationApp.Applications.Services
     {
     public class DonorService(IUnitOfWork unitOfWork) : IDonorService
         {
+
+        #region Add
+
         public async Task<bool> AddAsync(DonorDto donorDto)
             {
-            var donor = new DonorDto
-                {
-                Name = donorDto.Name,
-                PhoneNumber = donorDto.PhoneNumber
-                };
+            //var donor = new DonorDto
+            //    {
+            //    Name = donorDto.Name,
+            //    PhoneNumber = donorDto.PhoneNumber
+            //    };
 
-            if ( string.IsNullOrEmpty(donor.Name) || donor.PhoneNumber <= 0 )
+            if ( string.IsNullOrEmpty(donorDto.Name) || donorDto.PhoneNumber <= 0 )
                 {
                 throw new ArgumentException("Donor name and phone number must be provided.");
                 }
 
             var MappedDonor = new Donor
             (
-                donations: new List<Donation>(),
-                name: donor.Name
+                name: donorDto.Name,
+                donations: new List<Donation>()
             );
 
             await unitOfWork.GetRepository<Donor, Guid>()
                .AddAsync(MappedDonor);
 
             var result = await unitOfWork.SaveChangesAsync();
-            return result > 0;
-            }
-
-        public async Task<bool> DeleteAsync(Guid id)
-            {
-
-            var donorEntity = await unitOfWork.GetRepository<Donor, Guid>().GetByIdAsync(id);
-            if ( donorEntity == null )
+            if ( result <= 0 )
                 {
-                throw new KeyNotFoundException($"Donor with id {id} not found.");
+                throw new Exception("Failed to add donor.");
                 }
-            unitOfWork.GetRepository<Donor, Guid>().Delete(donorEntity);
-            var result = await unitOfWork.SaveChangesAsync();
-            return result > 0;
+            return true;
             }
+
+
+        #endregion
+
+        #region Get All
 
         public async Task<IEnumerable<DonorDto>> GetAllAsync()
             {
@@ -76,6 +75,11 @@ namespace DonationApp.Applications.Services
 
             return mappedDonors;
             }
+
+
+        #endregion
+
+        #region Get By ID
 
         public async Task<DonorDto> GetByIdAsync(Guid id)
             {
@@ -105,9 +109,13 @@ namespace DonationApp.Applications.Services
 
             }
 
+
+        #endregion
+
+        #region Update
+
         public async Task<bool> UpdateAsync(DonorDto donorDto)
             {
-
 
             var donorEntity = await unitOfWork.GetRepository<Donor, Guid>().GetByIdAsync(donorDto.Id);
             if ( donorEntity == null )
@@ -120,8 +128,37 @@ namespace DonationApp.Applications.Services
 
             unitOfWork.GetRepository<Donor, Guid>().Update(donorEntity);
             var result = await unitOfWork.SaveChangesAsync();
-            return result > 0;
+            if ( result <= 0 )
+                {
+                throw new Exception("Failed to update donor.");
+                }
+            else
+
+                return true;
             }
+
+        #endregion
+
+        #region Delete
+
+        public async Task<bool> DeleteAsync(Guid id)
+            {
+
+            var donorEntity = await unitOfWork.GetRepository<Donor, Guid>().GetByIdAsync(id);
+            if ( donorEntity == null )
+                {
+                throw new KeyNotFoundException($"Donor with id {id} not found.");
+                }
+            unitOfWork.GetRepository<Donor, Guid>().Delete(donorEntity);
+            var result = await unitOfWork.SaveChangesAsync();
+            if ( result <= 0 )
+                {
+                throw new Exception("Failed to delete donor.");
+                }
+            return true;
+            }
+
+        #endregion
 
         }
     }
