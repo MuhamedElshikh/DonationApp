@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace DonationApp.Domain.Entities
 {
-    public class Subscriber : BaseEntity<Guid>
+    public class Subscriber : Person
     {
-        public string Name { get; set; }
-        public int? PhoneNumber { get; set; }
+        public Subscriber(string name, int? phoneNumber, Guid subscriptionId ,bool isActive ,string receiptNumber) : base(name, phoneNumber)
+        {
+           
+            
+            SubscriptionId = subscriptionId;
+            IsActive = isActive;
+            Donations = new List<Donation>();
+            ReceiptNumber = receiptNumber;
+        }
+       
         public bool IsActive { get; set; }
         public Guid? donationId { get; set; }
         public List<Donation>? Donations { get; set; }

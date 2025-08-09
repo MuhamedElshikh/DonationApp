@@ -12,10 +12,11 @@ namespace DonationApp.Applications.Interfaces
     {
         Task<bool> AddSubscriberAsync(SubscriberDto subscriber);
         Task<bool> RemoveSubscriberAsync(Guid id);
-        Task<List<string>> GetAllSubscribersAsync();
+        Task<List<SubscriberDto>> GetAllSubscribersAsync();
 
         Task<SubscriberDto?> GetSubscriberByIdAsync(Guid id);
         Task<bool> UpdateSubscriberAsync( SubscriberDto subscriber);
+
 
     }
 }

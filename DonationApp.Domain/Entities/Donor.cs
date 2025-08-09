@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DonationApp.Domain.Entities
+{
+    public class Donor : Person
     {
-    public class Donor : BaseEntity<Guid>
+        public Donor(string name, int? phoneNumber, ICollection<Donation> donations) : base(name, phoneNumber)
         {
-        public Donor(ICollection<Donation> donations, string name)
-            {
-            Id = Guid.NewGuid();
             Donations = donations;
-            Name = name;
-            }
-        public string Name { get; set; }
-        public int? PhoneNumber { get; set; }
-        public ICollection<Donation> Donations { get; set; } = new List<Donation>();
         }
+
+        public ICollection<Donation> Donations { get; set; } = new List<Donation>();
     }
+}

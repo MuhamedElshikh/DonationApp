@@ -30,7 +30,8 @@ namespace DonationApp.Applications.Services
             var MappedDonor = new Donor
             (
                 name: donorDto.Name,
-                donations: new List<Donation>()
+                donations: new List<Donation>(),
+                phoneNumber: donorDto.PhoneNumber
             );
 
             await unitOfWork.GetRepository<Donor, Guid>()
